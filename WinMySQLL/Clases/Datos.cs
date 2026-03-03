@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Text;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace WinMySQL.Clases
 {
     internal class Datos
     {
-        string cadenaConexion = "server=Localhost;user=sebas;pwd=Luna115115";
+        string cadenaConexion = "server=Localhost;port=3307;user=sebas;pwd=Luna115115;Database=escolar";
         MySqlConnection conexion;
 
         private void Conectar()
@@ -33,6 +35,22 @@ namespace WinMySQL.Clases
             catch (Exception ex)
             {
                 Console.WriteLine("Error al desconectar de la base de datos: " + ex.Message);
+            }
+        }
+
+        public DataSet ejecutar(string comando)
+        {
+            try
+            {
+                Conectar();
+                MySqlDataAdapter da = new MySqlDataAdapter(comando, conexion);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return ds;
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error al ejecutar el comando: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
     }
