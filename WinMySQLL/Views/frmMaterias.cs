@@ -11,7 +11,7 @@ namespace WinMySQL.Views
 {
     public partial class frmMaterias : Form
     {
-        Datos datos= new Datos();
+        Datos datos = new Datos();
         DataSet ds = new DataSet();
         public frmMaterias()
         {
@@ -27,7 +27,7 @@ namespace WinMySQL.Views
         {
             try
             {
-                ds=datos.ejecutar("SELECT * FROM Materias");
+                ds = datos.ejecutar("SELECT * FROM Materias");
                 if (ds != null)
                 {
                     dgvMaterias.DataSource = ds.Tables[0];
@@ -36,10 +36,16 @@ namespace WinMySQL.Views
                 {
                     MessageBox.Show("No se encontraron datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnAgregarMateria_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

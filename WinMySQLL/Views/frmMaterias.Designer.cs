@@ -69,6 +69,7 @@
             btnAgregarMateria.TabIndex = 2;
             btnAgregarMateria.Text = "Agregar";
             btnAgregarMateria.UseVisualStyleBackColor = true;
+            btnAgregarMateria.Click += btnAgregarMateria_Click;
             // 
             // txtMateria
             // 
