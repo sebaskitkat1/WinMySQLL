@@ -108,6 +108,7 @@
             Controls.Add(txtMateria);
             Controls.Add(label1);
             Name = "frmMateria";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Materia";
             ResumeLayout(false);
             PerformLayout();

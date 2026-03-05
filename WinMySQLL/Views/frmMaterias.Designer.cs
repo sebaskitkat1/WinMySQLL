@@ -89,12 +89,14 @@
             // 
             // dgvMaterias
             // 
+            dgvMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMaterias.Dock = DockStyle.Fill;
             dgvMaterias.Location = new Point(0, 0);
             dgvMaterias.Name = "dgvMaterias";
             dgvMaterias.Size = new Size(800, 372);
             dgvMaterias.TabIndex = 0;
+            dgvMaterias.CellContentDoubleClick += dgvMaterias_CellContentDoubleClick;
             // 
             // frmMaterias
             // 
@@ -103,7 +105,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
             Name = "frmMaterias";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Materias";
+            Activated += frmMaterias_Activated;
             Load += frmMaterias_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
