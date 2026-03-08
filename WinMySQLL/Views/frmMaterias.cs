@@ -90,21 +90,24 @@ namespace WinMySQL.Views
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try { 
-            int idMateria=Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value);
-            if (MessageBox.Show("¿Está seguro de eliminar esta materia?", "Sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            try
             {
-                bool resultado = datos.ejecutarComando($"DELETE FROM Materias WHERE idMaterias={idMateria}");
-                if (resultado)
+                int idMateria = Convert.ToInt32(dgvMaterias.CurrentRow.Cells[0].Value);
+                if (MessageBox.Show("¿Está seguro de eliminar esta materia?", "Sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Materia eliminada correctamente.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool resultado = datos.ejecutarComando($"DELETE FROM Materias WHERE idMaterias={idMateria}");
+                    if (resultado)
+                    {
+                        MessageBox.Show("Materia eliminada correctamente.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        MessageBox.Show("Error al eliminar la materia.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                    MessageBox.Show("Error al eliminar la materia.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
-        } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar la materia: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
     }
 }

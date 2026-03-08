@@ -79,12 +79,14 @@
             alumnosToolStripMenuItem.Name = "alumnosToolStripMenuItem";
             alumnosToolStripMenuItem.Size = new Size(180, 22);
             alumnosToolStripMenuItem.Text = "Alumnos";
+            alumnosToolStripMenuItem.Click += alumnosToolStripMenuItem_Click;
             // 
             // profesoresToolStripMenuItem
             // 
             profesoresToolStripMenuItem.Name = "profesoresToolStripMenuItem";
             profesoresToolStripMenuItem.Size = new Size(180, 22);
             profesoresToolStripMenuItem.Text = "Profesores";
+            profesoresToolStripMenuItem.Click += profesoresToolStripMenuItem_Click;
             // 
             // frmMenu
             // 
