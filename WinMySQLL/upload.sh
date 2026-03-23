@@ -4,8 +4,8 @@
 #      Si no se indica archivo, usa el respaldo mas reciente de ./backups/
 
 MYSQL_CONTAINER="mysql_server"
-DB_NAME="escolar"
-DB_ROOT_PASS="joseluis"
+DB_NAME="escuela"
+DB_ROOT_PASS="Luna115115"
 LOCAL_BACKUP_DIR="./backups"
 
 echo "=== Restauracion de Base de Datos ==="
