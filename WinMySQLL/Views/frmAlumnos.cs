@@ -3,7 +3,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using MySqlConnector;
+using OfficeOpenXml;
 using WinMySQL.Clases;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace WinMySQL.Views
 {
@@ -84,6 +88,45 @@ namespace WinMySQL.Views
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            System.String path;
+            DialogResult dr = ofdExcel.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                path = ofdExcel.FileName;
+                ExcelPackage.License.SetNonCommercialPersonal("Sebastian Gonzalez");
+                using (var package = new ExcelPackage(new FileInfo(path)))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension.Rows;
+                    int colCount = worksheet.Dimension.Columns;
+                    DataTable dataTable = new DataTable();
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        dataTable.Columns.Add(worksheet.Cells[1, col].Value.ToString());
+                    }
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        DataRow dataRow = dataTable.NewRow();
+                        for (int col = 1; col <= colCount; col++)
+                        {
+                            dataRow[col - 1] = worksheet.Cells[row, col].Value;
+                        }
+                        dataTable.Rows.Add(dataRow);
+                       bool ok=datos.ejecutarComando(
+                            $"INSERT INTO Alumnos (noControl, nombres, apPat, apMat, semestre) " +
+                            $"VALUES ({dataRow[0]}, '{dataRow[1]}', '{dataRow[2]}', '{dataRow[3]}', {dataRow[4]})");
+                        if (!ok)
+                        {
+                            MessageBox.Show($"Error al importar el alumno con No. Control: {dataRow[0]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

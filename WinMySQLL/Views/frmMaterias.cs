@@ -109,5 +109,26 @@ namespace WinMySQL.Views
                 MessageBox.Show("Error al eliminar la materia: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtMateria_TextChanged(object sender, EventArgs e)
+        {
+            string comando = $"SELECT * FROM Materias WHERE nombre LIKE '%{txtMateria.Text}%'";
+            try
+            {
+                ds = datos.ejecutar(comando);
+                if (ds != null)
+                {
+                    dgvMaterias.DataSource = ds.Tables[0];
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

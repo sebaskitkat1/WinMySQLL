@@ -55,6 +55,27 @@ namespace WinMySQL.Clases
             }
         }
 
+        public bool ejecutarComando(string comando, MySqlParameter[] parametros)
+        {
+            try
+            {
+                Conectar();
+                MySqlCommand cmd = new MySqlCommand(comando, conexion);
+                cmd.Parameters.AddRange(parametros);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ejecutar el comando: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
         public bool ejecutarComando(string comando)
         {
             try

@@ -23,6 +23,8 @@ namespace WinMySQL.Views
             dgvAlumnos = new DataGridView();
             cmsData = new ContextMenuStrip(components);
             eliminarToolStripMenuItem = new ToolStripMenuItem();
+            ofdExcel = new OpenFileDialog();
+            btnImportar = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -40,6 +42,7 @@ namespace WinMySQL.Views
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(btnImportar);
             splitContainer1.Panel1.Controls.Add(txtAlumnos);
             splitContainer1.Panel1.Controls.Add(btnAgregar);
             splitContainer1.Panel1.Controls.Add(label1);
@@ -61,7 +64,7 @@ namespace WinMySQL.Views
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(680, 15);
+            btnAgregar.Location = new Point(585, 34);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(83, 30);
             btnAgregar.TabIndex = 1;
@@ -106,6 +109,20 @@ namespace WinMySQL.Views
             eliminarToolStripMenuItem.Text = "Eliminar";
             eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
             // 
+            // ofdExcel
+            // 
+            ofdExcel.FileName = "openFileDialog1";
+            // 
+            // btnImportar
+            // 
+            btnImportar.Location = new Point(694, 34);
+            btnImportar.Name = "btnImportar";
+            btnImportar.Size = new Size(83, 30);
+            btnImportar.TabIndex = 3;
+            btnImportar.Text = "Importar";
+            btnImportar.UseVisualStyleBackColor = true;
+            btnImportar.Click += btnImportar_Click;
+            // 
             // frmAlumnos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -135,5 +152,7 @@ namespace WinMySQL.Views
         private ContextMenuStrip cmsData;
         private ToolStripMenuItem eliminarToolStripMenuItem;
         private TextBox txtAlumnos;
+        private Button btnImportar;
+        private OpenFileDialog ofdExcel;
     }
 }
